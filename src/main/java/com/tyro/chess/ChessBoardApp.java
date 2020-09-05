@@ -13,10 +13,10 @@ public class ChessBoardApp {
         this.players = players;
     }
 
-    public void play(){
+    public Map<Player, List<String>>  play(){
         init();
         move();
-        getResult();
+        return getResult();
     }
 
     private void init(){
@@ -41,7 +41,7 @@ public class ChessBoardApp {
                 );
     }
 
-    private void getResult() {
+    public Map<Player, List<String>>  getResult() {
         Map<Player, List<String>> result = new HashMap<Player,List<String> >();
         for (Map.Entry<String, Player> entry : mapInsutructionCoordinate.entrySet()) {
             if(!result.containsKey(entry.getValue())){
@@ -56,6 +56,7 @@ public class ChessBoardApp {
         for (Map.Entry<Player, List<String>> entry : result.entrySet()) {
             System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
         }
+        return result;
     }
 
     private void runRookie(Player player) {
