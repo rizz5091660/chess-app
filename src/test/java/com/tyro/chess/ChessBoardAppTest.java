@@ -28,16 +28,16 @@ public class ChessBoardAppTest {
         players.add(player2);
 
         Map<Player, List<String>> mockResults = new HashMap<Player, List<String>>();
-        mockResults.put(player1,getPaths(10));
-        mockResults.put(player2,getPaths(8));
+        mockResults.put(player1,getPaths(11));
+        mockResults.put(player2,getPaths(9));
 
         ChessBoardApp chessBoardAppMock = org.mockito.Mockito.mock(ChessBoardApp.class);
         when(chessBoardAppMock.getResult()).thenReturn(mockResults);
 
         chessBoardAppMock.play();
 
-        assertEquals(10, mockResults.get(player1).size());
-        assertEquals(8, mockResults.get(player2).size());
+        assertEquals(11, mockResults.get(player1).size());
+        assertEquals(9, mockResults.get(player2).size());
 
     }
 

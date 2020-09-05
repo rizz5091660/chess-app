@@ -62,6 +62,7 @@ public class ChessBoardApp {
     private void runRookie(Player player) {
         int coordinateX = chessBoard.columns.indexOf(player.getStartPosition().charAt(0));
         int coordinateY = Integer.parseInt(String.valueOf(player.getStartPosition().charAt(1)));
+        System.out.println("coordinateX "+coordinateX+" coordinateY "+coordinateY);
         String key = null;
         //move left
         for (int i = coordinateX - 1; i >= 0; i--) {
@@ -70,7 +71,7 @@ public class ChessBoardApp {
                 break;
         }
         //move right
-        for (int i = coordinateX; i < chessBoard.boardSize; i++) {
+        for (int i = coordinateX+1; i < chessBoard.boardSize; i++) {
             key = String.valueOf(chessBoard.columns.charAt(i)) + coordinateY;
             if (moveFriendOrEnemy(player, key))
                 break;
@@ -88,6 +89,10 @@ public class ChessBoardApp {
             if (moveFriendOrEnemy(player, key))
                 break;
         }
+
+        if(mapInsutructionCoordinate.containsKey(player.getStartPosition()))
+            mapInsutructionCoordinate.remove(player.getStartPosition());
+
     }
 
     private void runKnight(Player player) {
@@ -120,6 +125,8 @@ public class ChessBoardApp {
     }
 
     private boolean moveFriendOrEnemy(Player player, String key) {
+        //if(player.getStartPosition().equalsIgnoreCase(key))
+        //    return false;
         boolean isKeyExist = mapInsutructionCoordinate.containsKey(key);
         if (!mapInsutructionCoordinate.containsKey(key)) {
             mapInsutructionCoordinate.put(key, player);
